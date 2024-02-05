@@ -1,0 +1,61 @@
+name: Build and Release
+
+on:
+  push:
+    paths:
+      - '**/DESCRIPTION'
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [macos-11, windows-latest]
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Rust
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+
+    - name: Set up R
+      uses: r-lib/actions/setup-r@v1
+
+    - name: Install dependencies
+      run: |
+        R -e 'install.packages(c("rextendr", "devtools"))'
+        R -e 'remotes::install_cran("roxygen2")'
+
+    - name: Build and Document
+      run: |
+        R -e 'rextendr::document()'
+        R -e 'devtools::build(binary = TRUE)'
+
+    - name: Upload Release Artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: release-artifacts
+        path: path/to/your/package/*
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Download Release Artifacts
+      uses: actions/download-artifact@v2
+      with:
+        name: release-artifacts
+        path: path/to/destination/folder
+
+    - name: Create Release
+      id: create_release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: 'path/to/destination/folder/*'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
