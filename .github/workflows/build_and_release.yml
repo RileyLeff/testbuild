@@ -34,14 +34,13 @@ jobs:
 
     - name: Build and Document
       run: |
-        Rscript -e 'rextendr::document()'
-        Rscript -e 'devtools::build(binary = TRUE)'
+        export R_BUILD_ARTIFACT_PATH=$(Rscript .github/package_build_script.R)
 
     - name: Upload Release Artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: release-artifacts
-        path: r_build_artifact
+        name: release-artifacts-${{ runner.os }}
+        path: ${{ env.R_BUILD_ARTIFACT_PATH }}
 
   release:
     needs: build
@@ -51,13 +50,25 @@ jobs:
     - name: Download Release Artifacts
       uses: actions/download-artifact@v2
       with:
-        name: release-artifacts
-        path: r_build_artifact
+        name: release-artifacts-*
+        path: binaries
+
+    - name: Extract version
+      id: extract_version
+      run: |
+        VERSION=$(sed -n '3p' DESCRIPTION)
+        VERSION=${VERSION#*: }
+        echo "VERSION=$VERSION" >> $GITHUB_ENV
 
     - name: Create Release
       id: create_release
       uses: softprops/action-gh-release@v1
-      with:
-        files: 'path/to/destination/folder/*'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ env.VERSION }}
+        body: Pre-built package binaries for version ${{ env.VERSION }}
+        files: 'binaries/*'
+        draft: false
+        prerelease: false
