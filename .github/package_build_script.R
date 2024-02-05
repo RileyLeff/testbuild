@@ -18,4 +18,4 @@ please_no_output <- rextendr::document(quiet = TRUE)
 
 please_no_output <- devtools::build(quiet = TRUE, binary = TRUE, path = output_path)
 
-cat("::set-env name=R_BUILD_ARTIFACT_PATH::", output_path)
+cat("::set-env name=R_BUILD_ARTIFACT_PATH::", output_path, "\n")

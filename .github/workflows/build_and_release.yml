@@ -34,7 +34,7 @@ jobs:
 
     - name: Build and Document
       run: |
-        export R_BUILD_ARTIFACT_PATH=$(Rscript .github/package_build_script.R)
+        Rscript .github/package_build_script.R
 
     - name: Upload Release Artifacts
       uses: actions/upload-artifact@v2
