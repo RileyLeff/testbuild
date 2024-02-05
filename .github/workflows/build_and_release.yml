@@ -34,13 +34,13 @@ jobs:
 
     - name: Build and Document
       run: |
-        Rscript .github/package_build_script.R
+        Rscript .github/util/package_build_script.R
 
     - name: Upload Release Artifacts
       uses: actions/upload-artifact@v2
       with:
         name: release-artifacts-${{ runner.os }}
-        path: ${{ env.R_BUILD_ARTIFACT_PATH }}
+        path: build/*
 
   release:
     needs: build

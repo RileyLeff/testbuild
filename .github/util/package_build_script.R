@@ -1,5 +1,9 @@
 meta <- Sys.info()
 
+build_dir <- "build"
+
+dir.create(build_dir)
+
 output_path <- paste0(
     tolower(meta['sysname']),
     "_",
@@ -16,6 +20,12 @@ output_path <- paste0(
 
 please_no_output <- rextendr::document(quiet = TRUE)
 
-please_no_output <- devtools::build(quiet = TRUE, binary = TRUE, path = output_path)
-
-cat("::set-env name=R_BUILD_ARTIFACT_PATH::", output_path, "\n")
+please_no_output <- devtools::build(
+    quiet = TRUE, 
+    binary = TRUE, 
+    path = paste(
+        build_dir, 
+        output_path, 
+        sep = "/"
+    )
+)
