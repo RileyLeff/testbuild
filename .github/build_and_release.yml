@@ -3,7 +3,7 @@ name: Build and Release
 on:
   push:
     paths:
-      - '**/DESCRIPTION'
+      - 'DESCRIPTION'
 
 jobs:
   build:
