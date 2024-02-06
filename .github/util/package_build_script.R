@@ -1,7 +1,11 @@
 meta <- Sys.info()
 
-build_dir <- "build"
 
+# desc_path <- "DESCRIPTION"
+# version_info <- readLines(desc_path)[3]
+# extracted_version <- sub("^[^0-9]*", "", version_info)
+
+build_dir <- "build"
 dir.create(build_dir)
 
 output_path <- paste0(
@@ -10,6 +14,8 @@ output_path <- paste0(
     tolower(meta['machine']),
     "_",
     "testbuild",
+    # "_",
+    # extracted_version,
     switch(
         tolower(meta['sysname']), 
         'windows' = '.zip', 
