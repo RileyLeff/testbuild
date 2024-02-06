@@ -17,6 +17,11 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
+    - name: Stupid Fucking uname Becaues I'm An Idiot
+      run: |
+        uname -m
+        uname -s
+
     - name: Set up Rust
       uses: actions-rs/toolchain@v1
       with:
@@ -52,6 +57,10 @@ jobs:
         pattern: release-artifacts-*
         path: bin 
         merge-multiple: true     
+
+    - name: Stupid Fucking ls bin folder Because I'm An Idiot
+      run: |
+        ls -R bin
 
     - name: Create Release
       id: create_release
