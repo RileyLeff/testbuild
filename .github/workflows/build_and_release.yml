@@ -58,3 +58,7 @@ jobs:
 
     - name: Release
       uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          bin/darwin_x86_64_testbuild.tgz
+          bin/windows_x86-64_testbuild.zip
