@@ -5,6 +5,9 @@ on:
     tags:
       - '*'
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ${{ matrix.os }}
@@ -16,11 +19,6 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-
-    - name: Stupid Fucking uname Becaues I'm An Idiot
-      run: |
-        uname -m
-        uname -s
 
     - name: Set up Rust
       uses: actions-rs/toolchain@v1
@@ -56,11 +54,7 @@ jobs:
       with:
         pattern: release-artifacts-*
         path: bin 
-        merge-multiple: true     
-
-    - name: Stupid Fucking ls bin folder Because I'm An Idiot
-      run: |
-        ls -R bin
+        merge-multiple: true
 
     - name: Release
       uses: softprops/action-gh-release@v1
