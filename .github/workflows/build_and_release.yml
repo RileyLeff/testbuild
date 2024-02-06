@@ -3,9 +3,9 @@ name: Build and Release
 on:
   push:
     branches:
-      - 'main'
-    paths:
-      - 'DESCRIPTION'
+      - main
+    tags:
+      - '*'
 
 jobs:
   build:
