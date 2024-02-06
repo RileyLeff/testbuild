@@ -72,6 +72,6 @@ jobs:
         body: Pre-built package binaries for version ${{ github.ref }}
         files: |
           bin/darwin_x86_64_testbuild.tgz
-          bin/windows_x86_64_testbuild.zip
+          bin/windows_x86-64_testbuild.zip
         draft: false
         prerelease: false
