@@ -1,6 +1,6 @@
 Package: testbuild
 Title: Testing R/Rust Binary Build System On GH Actions
-Version: 0.0.0.9009
+Version: 0.0.0.9010
 Authors@R: 
     person("Riley", "Last", , "rileylff@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-6171-9594"))
