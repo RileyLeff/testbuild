@@ -48,8 +48,14 @@ jobs:
     - name: Download Release Artifacts
       uses: actions/download-artifact@v2
       with:
-        name: release-artifacts-*
+        name: release-artifacts-Windows
         path: binaries
+
+    - name: Download Release Artifacts
+      uses: actions/download-artifact@v2
+      with:
+        name: release-artifacts-macOS
+        path: binaries        
 
     - name: Extract version
       id: extract_version
