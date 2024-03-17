@@ -9,4 +9,3 @@ name = 'testbuild'
 
 [dependencies]
 extendr-api = '*'
-plomo = {git="https://github.com/rileyleff/plomo.git"}

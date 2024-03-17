@@ -25,15 +25,15 @@ jobs:
       with:
         toolchain: stable
 
-    - name: Set up Rust cache stuff
-      uses: Swatinem/rust-cache@v2
-      with:
-        workspaces: |
-          src/rust
-        cache-directories: |
-          src/.cargo
-          src/rust
-        cache-on-failure: true
+    # - name: Set up Rust cache stuff (Uploads cache successfully but doesn't download correctly at start of next run?)
+    #   uses: Swatinem/rust-cache@v2
+    #   with:
+    #     workspaces: |
+    #       src/rust
+    #     cache-directories: |
+    #       src/.cargo
+    #       src/rust
+    #     cache-on-failure: true
 
 
     - name: Set up R
