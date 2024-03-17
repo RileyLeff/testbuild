@@ -78,6 +78,6 @@ jobs:
         files: |
           bin/darwin_arm64_testbuild.tgz
           bin/darwin_x86_64_testbuild.tgz
-          bin/windows_x86_64_testbuild.zip
+          bin/windows_x86-64_testbuild.zip
         draft: false
         prerelease: false
