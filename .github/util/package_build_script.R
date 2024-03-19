@@ -1,10 +1,5 @@
 meta <- Sys.info()
 
-
-# desc_path <- "DESCRIPTION"
-# version_info <- readLines(desc_path)[3]
-# extracted_version <- sub("^[^0-9]*", "", version_info)
-
 build_dir <- "build"
 dir.create(build_dir)
 
@@ -20,7 +15,8 @@ output_path <- paste0(
         tolower(meta['sysname']), 
         'windows' = '.zip', 
         'darwin' = '.tgz', 
-        'linux-gnu' = '.tar.gz'
+        'linux-gnu' = '.tar.gz',
+        'linux' = '.tar.gz'
     )
 )
 

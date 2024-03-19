@@ -14,7 +14,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [macos-14, macos-latest, windows-latest]
+        os: [macos-14, macos-latest, windows-latest, ubuntu-latest]
 
     steps:
     - name: Checkout code
@@ -82,5 +82,6 @@ jobs:
           bin/darwin_arm64_testbuild.tgz
           bin/darwin_x86_64_testbuild.tgz
           bin/windows_x86-64_testbuild.zip
+          bin/linux_x86_64_testbuild.tar.gz
         draft: false
         prerelease: false
