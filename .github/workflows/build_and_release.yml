@@ -35,6 +35,12 @@ jobs:
     #       src/rust
     #     cache-on-failure: true
 
+    - name: Set up R Dependencies (Ubuntu only)
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        chmod +x .github/scripts/install_dependencies.sh
+        ./.github/util/install_dependencies.sh
+        
 
     - name: Set up R
       uses: r-lib/actions/setup-r@v2
